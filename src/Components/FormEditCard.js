@@ -5,7 +5,7 @@ function FormEditCard({ card = {}, handleChange, handleSubmit, handleCancel }) {
     <>
       <form onSubmit={(event) => handleSubmit(event)}>
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1">Name</label>
+          <label htmlFor="front">Name</label>
           <textarea
             className="form-control"
             id="front"
@@ -17,7 +17,7 @@ function FormEditCard({ card = {}, handleChange, handleSubmit, handleCancel }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Description</label>
+          <label htmlFor="back">Description</label>
           <textarea
             className="form-control"
             id="back"

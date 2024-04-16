@@ -5,7 +5,7 @@ function FormEditDeck({ deck = {}, handleChange, handleSubmit, handleCancel }) {
     <>
       <form onSubmit={(event) => handleSubmit(event)}>
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1">Name</label>
+          <label htmlFor="name">Name</label>
           <input
             className="form-control"
             type="text"
@@ -17,7 +17,7 @@ function FormEditDeck({ deck = {}, handleChange, handleSubmit, handleCancel }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">Description</label>
+          <label htmlFor="description">Description</label>
           <textarea
             className="form-control"
             id="description"

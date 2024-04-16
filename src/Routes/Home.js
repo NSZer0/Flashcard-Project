@@ -10,9 +10,7 @@ function Home() {
     const abortController = new AbortController();
     
     listDecks(abortController.signal)
-      .then(response => {
-        setDecks(response);
-      })
+      .then(setDecks);
 
     return () => abortController.abort();
   }, []);
