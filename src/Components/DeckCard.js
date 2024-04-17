@@ -8,7 +8,7 @@ function DeckCard({ deckId, cardsInDeck, name, description, isOverviewPage = fal
   }
 
   return (
-    <div className="card border-secondary my-3 col-sm-12 col-md-6">
+    <div className="card border-secondary mb-3 col-sm-12 col-md-6">
       <div className="card-body text-secondary">
         <h4 className="card-title font-weight-bold d-inline-block">{name}</h4>
         <p className="card-title float-right">{cardCount()}</p>

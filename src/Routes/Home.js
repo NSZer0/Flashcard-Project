@@ -4,13 +4,26 @@ import { listDecks, deleteDeck } from "../utils/api";
 import DeckList from "../Containers/DeckList";
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [decks, setDecks] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
     
-    listDecks(abortController.signal)
-      .then(setDecks);
+    const fetchData = async () => {
+      const response = await listDecks(abortController.signal)
+      setDecks(response);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 200);
+    };
+
+    fetchData();
+
+    // listDecks(abortController.signal)
+    //   .then(setDecks)
+    //   .then(setIsLoading(false));
 
     return () => abortController.abort();
   }, []);
@@ -24,15 +37,15 @@ function Home() {
 
   return (
     <>
-      {decks[1] ? (
-        <>
-          <Link to="/decks/new" type="button" className="btn btn-secondary"><i className="bi bi-plus"></i> Create Deck</Link>
-          <DeckList decks={decks} handleDeleteDeck={handleDeleteDeck}/>
-        </>
-      ) : (
-        <div className="p-4 border border-top-0">
-          <p>Loading...</p>
+      <Link to="/decks/new" type="button" className="btn btn-secondary mb-3"><i className="bi bi-plus"></i> Create Deck</Link>
+      {isLoading ? (
+        <div className="p-4 border">
+          <p>Loading Decks...</p>
         </div>
+      ) : (
+        <>
+          {decks.length > 0 ? (<DeckList decks={decks} handleDeleteDeck={handleDeleteDeck}/>) : (<h2>No decks to display</h2>)}
+        </>
       )}
     </>
   );
