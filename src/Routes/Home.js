@@ -14,16 +14,14 @@ function Home() {
       const response = await listDecks(abortController.signal)
       setDecks(response);
 
+      // Use a setTimeout here because otherwise setIsLoading will finish before setDecks finishes.
+      // That could cause the page to render the "No decks to display" message incorrectly.
       setTimeout(() => {
         setIsLoading(false);
       }, 200);
     };
 
     fetchData();
-
-    // listDecks(abortController.signal)
-    //   .then(setDecks)
-    //   .then(setIsLoading(false));
 
     return () => abortController.abort();
   }, []);
